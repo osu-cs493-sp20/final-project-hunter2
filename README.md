@@ -12,7 +12,9 @@ The database consists of 4 main tables:
 * assignments
 * submissions
 
-Each user has access authorization at three levels
+Each user has a role which grants them different levels of data privlidge 
 * admin
 * instructor
 * student
+
+### Layer by Layer
