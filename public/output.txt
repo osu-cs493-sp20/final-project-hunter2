@@ -5,8 +5,8 @@
   
 1. User Creation POST /users
 Successful Queries:
-Inserting student: 
-  ->Inserting admin: {"id":15}
+  ->Inserting student:  {"success":"User succesfully created"}
+  ->Inserting admin: {"success":"User succesfully created"}
   
 Failed Queries:
   ->Non admin attempts to make admin: {"error":"The request body was either not present or did not contain valid fields"}
@@ -15,7 +15,7 @@ Failed Queries:
  
 2. User Login POST /users/login
 Successful Queries:
-  ->Bearer Token for login: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTU5MTgwOTE4NSwiZXhwIjoxNTkxODk1NTg1fQ.0mVBoxJB5bQAd_2X5_b_FOCUA1_SmQejT3WPz_wZAKs"}
+  ->Bearer Token for login: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlhdCI6MTU5MTgxMjQxNiwiZXhwIjoxNTkxODk4ODE2fQ.NynLAc8lA_RdDp3sQ6x_8BBtTQstxqWILyOecbxfHO4"}
  
 Failed Queries:
   ->Unauthentic user: {"error":"User password or email is invalid"}
@@ -162,7 +162,7 @@ Failed Queries:
  
 5. Return list of all submissions for assignment. paginated GET /assignments/{id}/submissions
 Successful Queries:
-  ->List submissions: {"courses":[{"submissionId":1,"studentId":4,"assignmentId":2,"timestamp":"2020-06-10T23:54:13.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":9,"studentId":4,"assignmentId":2,"timestamp":"2020-06-10T23:54:13.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":17,"studentId":4,"assignmentId":2,"timestamp":"2020-06-10T23:54:13.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":25,"studentId":4,"assignmentId":2,"timestamp":"2020-06-10T23:54:13.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":2,"studentId":4,"assignmentId":3,"timestamp":"2020-06-10T23:54:13.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,50,46,112,100,102]}}],"totalPages":null,"pageSize":5,"count":{"assignmentId":8},"links":{}}
+  ->List submissions: {"courses":[{"submissionId":1,"studentId":4,"assignmentId":2,"timestamp":"2020-06-11T01:04:53.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":9,"studentId":4,"assignmentId":2,"timestamp":"2020-06-11T01:04:53.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":17,"studentId":4,"assignmentId":2,"timestamp":"2020-06-11T01:04:53.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":25,"studentId":4,"assignmentId":2,"timestamp":"2020-06-11T01:04:53.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,49,46,112,100,102]}},{"submissionId":2,"studentId":4,"assignmentId":3,"timestamp":"2020-06-11T01:04:53.000Z","file":{"type":"Buffer","data":[47,102,105,108,101,115,47,115,117,98,109,105,116,47,97,115,115,105,103,110,109,101,110,116,50,46,112,100,102]}}],"totalPages":null,"pageSize":5,"count":{"assignmentId":8},"links":{}}
  
 Failed Queries:
   ->Unauthorized user: {"error":"The request cannot be carried out by unauthenticated user"}

@@ -11,12 +11,12 @@ echo "==========================================================USER TESTS======
 echo "============================================================================================================================================"
 echo "  "
 echo "  "
+bearerToken=$(curl -X POST "http://localhost:8000/users/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\":\"1\",\"email\":\"tigerface@boxing.com\",\"password\":\"hunter2\"}" | jq -r '.token')
 echo "1. User Creation POST /users"
 echo "Successful Queries:"
-test_1_1_1=$(curl -X POST "http://localhost:8000/users" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"name\":\"Jane Doe\",\"email\":\"doej@oregonstate.edu\",\"password\":\"hunter2\",\"role\":\"student\"}")
-echo "Inserting student: $test_1_1"
+test_1_1_1=$(curl -X POST "http://localhost:8000/users" -H "Authorization: Bearer ${bearerToken}" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\":\"1\",\"name\":\"Jane Doe\",\"email\":\"doej@oregonstate.edu\",\"password\":\"hunter2\",\"role\":\"student\"}")
+echo "  ->Inserting student: $test_1_1"
 fakeBearerToken="111.222.333"
-bearerToken=$(curl -X POST "http://localhost:8000/users/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\":\"1\",\"email\":\"tigerface@boxing.com\",\"password\":\"hunter2\"}" | jq -r '.token')
 test_1_1_2=$(curl -X POST "http://localhost:8000/users" -H "accept: application/json" -H "Authorization: Bearer ${bearerToken}" -H "Content-Type: application/json" -d "{\"id\":\"1\",\"name\":\"Bob Ross\",\"email\":\"wolf@wallstreet.edu\",\"password\":\"hunter2\",\"role\":\"admin\"}")
 echo "  ->Inserting admin: $test_1_1_2"
 echo "  "
