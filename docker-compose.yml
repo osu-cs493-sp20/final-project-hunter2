@@ -1,0 +1,59 @@
+version: '3.7'
+services: 
+#  api:
+#    build: .
+#    image: final-api
+#    container_name: final-api
+#    restart: always
+#    ports: 
+#      - 8001:8000
+#    environment: 
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#      MYSQL_HOST: mysql
+#      MYSQL_PORT: 3306
+#    networks: 
+#      - api-network
+
+  mysql-1:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-final-server-1
+    ports:
+      - 3310:3306
+    volumes:
+      - mysql-data-1:/var/lib/mysql
+      - ./db-init/:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#    networks: 
+#        - api-network
+
+  mysql-2:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-final-server-2
+    ports:
+      - 3312:3306
+    volumes:
+      - mysql-data-2:/var/lib/mysql
+      - ./db-init/:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  
+#networks: 
+#  api-network:
+#    driver: bridge
+
+volumes:
+  mysql-data-1:
+    name: tarpaulin-mysql-data-1
+  mysql-data-2:
+    name: tarpaulin-mysql-data-2
