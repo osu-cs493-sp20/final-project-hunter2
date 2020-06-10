@@ -4,7 +4,7 @@ are developed to test each endpoint in the server api. They are organized by eac
 access point (/users, /courses, /assignments). Displaying successful and unsuccessful query 
 results. The result of a test run will be included in output.txt. 
 
-## ==========================USER TESTS==========================
+## USER TESTS
 ### 1. User Creation POST /users
     Successful Queries: 
         -> Any user may create a student account
@@ -28,7 +28,7 @@ results. The result of a test run will be included in output.txt.
         -> Authenticated user is trying to access another users data 
     Note: body "id":"4"
 
-## ==========================COURSE TESTS==========================
+## COURSE TESTS
 ### 1. Fetch all courses GET /courses
     Successful Queries:
         -> If filters are set to find a page and user is authenticated  
@@ -94,7 +94,7 @@ results. The result of a test run will be included in output.txt.
         -> Not authenticated user 
         -> No {id} is found in courses DB 
 
-## ==========================ASSIGNMENTS TESTS==========================
+## ASSIGNMENTS TESTS
 ### 1. Create new assignment POST /assignments
     Successful Queries:
         -> Assignment body is correct and user is authenticated
