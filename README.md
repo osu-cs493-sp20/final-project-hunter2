@@ -5,14 +5,14 @@ Tarpaulin is a lightweight course management tool. This project practices the im
 ## API Architecture Diagram
 
 <p align="center">
-  <img width="460" height="300" src="projimages/REST.png">
+  <img src="projimages/REST.png">
 </p>
 <br />
 The API is designed to be a REpresentational State Transfer (REST) API. Each endpoint is predefined with stateless operations. Minimizing the payload size sent through a HTTP request. A Restful approach was taken because
 REST is the most efficient and widespread standard in the creation of APIs for internet services. 
 
 <p align="center">
-  <img width="460" height="300" src="projimages/archfig1.png">
+  <img src="projimages/archfig1.png">
 </p>
 <br />
 The figure above represents a secure transaction architecture. Once a user provides
@@ -21,7 +21,7 @@ future requests. JWT tokens are used to authenticate future client requests. Thi
 eavesdroppers from receiving user information for transaction security
 
 <p align="center">
-  <img width="460" height="300" src="projimages/archfig2.png">
+  <img src="projimages/archfig2.png">
 </p>
 All error messages are saved into the database. This is for debugging the API and also
 monitoring it’s activity. In every else or catch block that would otherwise send a res.status(4xx)
@@ -30,7 +30,7 @@ server.js. It stores the message to the server then dispatches the message to th
 
 ### API Data Layout 
 <p align="center">
-  <img width="460" height="300" src="projimages/database.png">
+  <img src="projimages/database.png">
 </p>
 <br />
 Users store every user that creates an account. Any user can create a student account where
@@ -49,23 +49,21 @@ Assignments has a similar relationship with submissions. A one the many relation
 may have many students. An assignment for a course receives many assignment submissions.
 
 <p align="center">
-  <img width="460" height="300" src="projimages/plevel.png">
+  <img src="projimages/plevel.png">
 </p>
 <br />
-The database consists of 4 main tables:
-* users
-* courses
-* assignments
-* submissions
 
 Each user has a role which grants them different levels of data privlidge 
 * admin
 * instructor
 * student
 
+Each level of permissions grants access to different entrypoints in the server. Unauthenticated users will receive an error message for the respective entrypoint they attempt to access. 
+Any accessible entrypoint will pass the user a 2xx status code. 
+
 ### Third Party Tools 
 <p align="center">
-  <img width="460" height="300" src="projimages/tools.png">
+  <img src="projimages/tools.png">
 </p>
 <br />
 JQ is a great tool for bash that parses a curl request into json. This enabled creating test scripts
