@@ -5,7 +5,7 @@ Tarpaulin is a lightweight course management tool. This project practices the im
 ## API Architecture Diagram
 
 <p align="center">
-  <img src="./projimages/REST.png">
+  <img width="460" height="300" src="./projimages/REST.png">
 </p>
 <br />
 The API is designed to be a REpresentational State Transfer (REST) API. Each endpoint is predefined with stateless operations. Minimizing the payload size sent through a HTTP request. A Restful approach was taken because
