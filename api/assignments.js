@@ -20,9 +20,14 @@ const {
     SubmissionSchema
 } = require('../models/submissions');
 
+/*
+ * Privlidge Level Declaration
+ */
+
 const admin = "admin";
 const instructor = "instructor";
 const student = "student";
+
 // =========================================
 // ===========  GET assignments  ===========
 // =========================================

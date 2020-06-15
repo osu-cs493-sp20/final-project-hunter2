@@ -16,6 +16,12 @@ const SubmissionSchema = {
 };
 exports.SubmissionSchema = SubmissionSchema;
 
+/*
+    Query: Gets the total number of submissions for a specific assignment
+    Returns: Total number of submissions
+    Return Value: int
+ */
+
 async function countSubmissionsByAssignmentId(assignmentId) {
     const [ results ] = await mysqlPool.query(
         'SELECT COUNT(*) AS assignmentId FROM submissions WHERE assignmentId=?',
@@ -25,6 +31,12 @@ async function countSubmissionsByAssignmentId(assignmentId) {
     return results[0];
 }
 exports.countSubmissionsByAssignmentId = countSubmissionsByAssignmentId;
+
+/*
+    Query: Inserts a file into submissions table
+    Returns: insertId
+    Return Value: int
+ */
 
 async function saveFile(body) {
 

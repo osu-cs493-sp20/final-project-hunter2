@@ -36,9 +36,19 @@ const CoursePaginationSchema = {
     term: { required: false }
 }
 
+/*
+ * Privlidge Level Declaration
+ */
+
 const admin = "admin";
 const instructor = "instructor";
 const student = "student";
+
+/*
+    Query: Creates a new course 
+    Returns: Course Insert ID 
+    Return Value: int
+ */
 
 async function insertNewCourse(body) {
 
@@ -55,6 +65,12 @@ async function insertNewCourse(body) {
     return results.insertId;
 }
 exports.insertNewCourse = insertNewCourse;
+
+/*
+    Query: Get a list of what classes a student is enrolled in
+    Returns: List of classes
+    Return Value: JSON Object
+ */
 
 async function getCourseListByUser(userId, role) {
     
@@ -76,6 +92,12 @@ async function getCourseListByUser(userId, role) {
 }
 exports.getCourseListByUser = getCourseListByUser;
 
+/*
+    Query: Gets a list of all students in a course
+    Returns: List of students
+    Return Value: JSON Object
+ */
+
 async function getStudentListByCourseId(courseId) {
     const [ results ] = await mysqlPool.query(
         'SELECT studentId FROM enrolledStudents WHERE courseId=?',
@@ -85,6 +107,12 @@ async function getStudentListByCourseId(courseId) {
     return results;
 }
 exports.getStudentListByCourseId = getStudentListByCourseId;
+
+/*
+    Query: Get a course based on query parameters
+    Returns: Paginated response
+    Return Value: JSON Object
+ */
 
 async function getCoursesPage(searchParams) {
     
@@ -99,11 +127,9 @@ async function getCoursesPage(searchParams) {
    
     let queryConditionals = paginationQuery(searchParams, CoursePaginationSchema);
     let query = 'SELECT * FROM courses ORDER BY courseId LIMIT ?,?';
-  
     let arr = [];
     // Check truthy values!!
     if(!!searchParams.subject || !!searchParams.term || !!searchParams.number){
-    
         arr = paginationArray(searchParams, CoursePaginationSchema);
         query = 'SELECT * FROM courses WHERE ' + queryConditionals + ' ORDER BY courseId LIMIT ? , ?';
     }
@@ -125,6 +151,12 @@ async function getCoursesPage(searchParams) {
 }
 exports.getCoursesPage = getCoursesPage;
 
+/*
+    Query: Grab course information from its ID
+    Returns: Course Information
+    Return Value: JSON Object
+ */
+
 async function getCourseByCourseId(id){
     const [ results ] = await mysqlPool.query(
         'SELECT subject, number, title, term, instructorId FROM courses WHERE courseId=?',
@@ -139,6 +171,12 @@ async function getCourseByCourseId(id){
 }
 exports.getCourseByCourseId = getCourseByCourseId;
 
+/*
+    Query: Counts the number of courses in course table
+    Returns: Total number of courses
+    Return Value: int
+ */
+
 async function countCourses() {
     const [ results ] = await mysqlPool.query(
         'SELECT COUNT(*) AS courseId FROM users'
@@ -146,6 +184,12 @@ async function countCourses() {
 
     return results[0];
 }
+
+/*
+    Query: Update a course by its ID
+    Returns: If any row was updated
+    Return Value: JSON Object
+ */
 
 async function updateCourseById(id, updateValues){
 
@@ -162,6 +206,12 @@ async function updateCourseById(id, updateValues){
 }
 exports.updateCourseById = updateCourseById;
 
+/*
+    Query: Deletes a course by its ID
+    Returns: The results of rows affected by transaction
+    Return Value: JSON Object
+ */
+
 async function deleteCourseByCourseId(courseId) {
     const [ results ] = await mysqlPool.query(
         'DELETE FROM courses WHERE courseId=?',
@@ -175,6 +225,12 @@ async function deleteCourseByCourseId(courseId) {
     return results;
 }
 exports.deleteCourseByCourseId = deleteCourseByCourseId;
+
+/*
+    Query: Adds a student to the enrolledStudents table
+    Returns: The transaction history of the query operation
+    Return Value: JSON Object
+ */
 
 async function enrollStudent(studentList, courseId, instructor){
     let results = [];
@@ -213,6 +269,12 @@ async function enrollStudent(studentList, courseId, instructor){
 }
 exports.enrollStudent = enrollStudent;
 
+/*
+    Query: Unenroll a student or remove them from the enrollStudent list
+    Returns: The transaction history of the query operation
+    Return Value: JSON Object
+ */
+
 async function unenrollStudent(studentList, courseId, instructor){
     let results = [];
     let noDeletes = true;
@@ -245,6 +307,12 @@ async function unenrollStudent(studentList, courseId, instructor){
     return results;
 }
 exports.unenrollStudent = unenrollStudent;
+
+/*
+    Query: Gets the student roster, creates a CSV file
+    Returns: File of students enrolled in a class
+    Return Value: CSV File
+ */
 
 async function getStudentRosterCSV(courseId) {
     const [ results ] = await mysqlPool.query(

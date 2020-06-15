@@ -25,6 +25,10 @@ const { getInstructorByInstructorId } = require('../models/users');
 
 const { getAssignmentByCourseId } = require('../models/assignments'); 
 
+/*
+ * Privlidge Level Declaration
+ */
+
 const admin = "admin";
 const instructor = "instructor";
 const student = "student";

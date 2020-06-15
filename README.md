@@ -1,6 +1,6 @@
 # Tarpaulin
 
-Tarpaulin is a lightweight course management tool. This project practices the implementation of a RESTful API. Utilizing Node.js, express and mysql. While being completely dockerized for deployable enviornments. Tarpaulin consists of Users, Courses, Assignments and Submissions. Each represented as a resource. 
+Tarpaulin is a lightweight course management tool. This project practices the implementation of a RESTful API. Utilizing Node.js, express and mysql. The project launches the MySql servers in a Docker container. They are launched through a docker-compose.yml file. Tarpaulin consists of Users, Courses, Assignments and Submissions. Each represented as a resource. 
 
 ## API Architecture Diagram
 
@@ -39,7 +39,7 @@ classId they teach so their instructorId may appear more than once if they teach
 classes. Therefore the relationship is 1 to many. For enrolledStudents it is a similar design. Any
 class they may be enrolled in is another entry in the table. Making the relationship between
 users-enrolledStudents 1 to many.
-
+<br />
 Courses table stores course information. Only admins can create courses. Students who are
 enrolled in the courses may use a inner join to find their relationship. CourseId is a foreign key
 in instructors, enrolledStudents, and assignments tables. The assignments table stores
@@ -68,4 +68,4 @@ Any accessible entrypoint will pass the user a 2xx status code.
 <br />
 JQ is a great tool for bash that parses a curl request into json. This enabled creating test scripts
 with dynamic values. Creating CSV files was simple with Json2CSV. A third party tool used to
-parse json with dynamic headers into a CSV file.
+parse json with dynamic headers into a CSV file. All tests for this project are conducted under the [public](public/) folder.

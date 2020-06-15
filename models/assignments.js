@@ -25,10 +25,19 @@ const AssignmentPaginationSchema = {
 };
 exports.AssignmentPaginationSchema = AssignmentPaginationSchema;
 
+/*
+ * Privlidge Level Declaration
+ */
+
 const admin = "admin";
 const instructor = "instructor";
 const student = "student";
 
+/*
+    Query: Gets an assignment by a courses ID
+    Returns: List of assignments in a course
+    Return Value: JSON Object
+ */
 
  async function getAssignmentByCourseId(courseId) {
     const [ results ] = await mysqlPool.query(
@@ -39,6 +48,12 @@ const student = "student";
     return { assignmnets: results };
  }
  exports.getAssignmentByCourseId = getAssignmentByCourseId;
+
+/*
+    Query: Get assignment information based on its ID
+    Returns: Information on an assignment
+    Return Value: JSON Object
+ */
 
  async function getAssignmentByAssignmentId(assignmentId) {
     const [ results ] = await mysqlPool.query(
@@ -53,6 +68,12 @@ const student = "student";
     return results;
  }
  exports.getAssignmentByAssignmentId = getAssignmentByAssignmentId;
+
+ /*
+    Query: Get an assignment page 
+    Returns: Paginated response 
+    Return Value: JSON Object
+ */
 
  async function getAssignmentPage(searchParams) {
     
@@ -91,6 +112,12 @@ const student = "student";
 }
 exports.getAssignmentPage = getAssignmentPage;
 
+/*
+    Query: Counts the number of assignments by a course ID 
+    Returns: Number of assignments in a class
+    Return Value: int
+ */
+
 async function countAssignmentsByCourseId(courseId) {
     const [ results ] = await mysqlPool.query(
         'SELECT COUNT(*) AS courseId FROM assignments WHERE courseId=?',
@@ -99,6 +126,12 @@ async function countAssignmentsByCourseId(courseId) {
 
     return results[0];
 }
+
+/*
+    Query: Inserts a new assignment
+    Returns: The insert ID of the newly added assignment
+    Return Value: int
+ */
 
  async function insertNewAssignment(body) {
      const [ results ] = await mysqlPool.query(
@@ -110,6 +143,12 @@ async function countAssignmentsByCourseId(courseId) {
  }
  exports.insertNewAssignment = insertNewAssignment;
  
+/*
+    Query: Updates the information on a assignment
+    Returns: The result of transaction
+    Return Value: JSON Object
+ */
+
 async function updateAssignmentById(body, assignmentId) {
 
     const [ results ] = await mysqlPool.query(
@@ -124,6 +163,12 @@ async function updateAssignmentById(body, assignmentId) {
     return results;
 }
 exports.updateAssignmentById = updateAssignmentById;
+
+/*
+    Query: Deletes a assignment by its ID
+    Returns: The result of transaction
+    Return Value: JSON Object
+ */
 
 async function deleteAssignmnetByAssignmnetId(assignmentId) {
     const [ results ] = await mysqlPool.query(

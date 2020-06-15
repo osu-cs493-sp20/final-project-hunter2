@@ -1,12 +1,15 @@
 /*
- * Error schema and data accessor methods;
+ * Error data accessor methods;
  */
 
 const mysqlPool = require('../lib/mysqlPool');
 const { extractValidFields } = require('../lib/validation');
 
+
 /*
- * Schema describing required/optional fields of a error object.
+    Query: Creates and inserts an error to look at error request history
+    Returns: insertId from the error codes query
+    Return Value: int
  */
 
  async function enterErrorRequest(errorCode, err) {
