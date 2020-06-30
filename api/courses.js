@@ -45,7 +45,7 @@ const student = "student";
     Permission Level: Authenticated User
     Media Type: JSON
 */
-router.get('/', requireAuthentication, async (req, res, next) => {
+router.post('/', requireAuthentication, async (req, res, next) => {
 
     if(req.authenticated) {
         const searchParams = {

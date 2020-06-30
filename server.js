@@ -5,10 +5,10 @@ const api = require('./api');
 const { enterErrorRequest } = require('./models/errors');
 
 const app = express();
-const port = process.env.PORT || 8000;
-
+const port = process.env.PORT || 8033;
+const cors = require('cors');
+app.use(cors());
 app.use(morgan('dev'));
-
 app.use(express.json());
 app.use(express.static('public'));
 
